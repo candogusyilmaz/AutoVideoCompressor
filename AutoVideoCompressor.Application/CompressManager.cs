@@ -38,7 +38,12 @@ public sealed class CompressManager
         processStartInfo.ArgumentList.Add(filename);
 
         if (_config.UseDefaultCodecs == false && _config.Arguments != null && _config.Arguments.Length > 0)
-            processStartInfo.ArgumentList.Add(_config.Arguments);
+        {
+            foreach (var item in _config.Arguments.Split(' '))
+            {
+                processStartInfo.ArgumentList.Add(item);
+            }
+        }
 
 
         string outputName = Path.GetFileNameWithoutExtension(filename) + ".mp4";

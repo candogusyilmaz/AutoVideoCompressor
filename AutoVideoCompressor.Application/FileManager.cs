@@ -19,6 +19,8 @@ public sealed class FileManager
             IncludeSubdirectories = false
         };
         _watcher.Created += OnFileCreated;
+
+        CreateDirectoryIfNotExists();
     }
 
     public void Start()
@@ -35,15 +37,13 @@ public sealed class FileManager
 
     private async void OnFileCreated(object sender, FileSystemEventArgs e)
     {
-        // Create the save directory
-        CreateDirectoryIfNotExists();
+        while (IsFileInUse(e.FullPath)) { }
 
-        // Start compressing the file
+        // Just to make sure file is not in use
+        await Task.Delay(2000);
+
         await _compressor.Compress(e.FullPath);
 
-        // After process has been completed
-
-        // Delete the original file if enabled
         DeleteOriginalFileIfEnabled(e.FullPath);
     }
 
@@ -66,5 +66,22 @@ public sealed class FileManager
                 _logger.Final($"Original file deleted. [{Path.GetFileName(filename)}]");
             }
         }
+    }
+
+    private bool IsFileInUse(string filename)
+    {
+        try
+        {
+            using (FileStream inputStream = File.Open(filename, FileMode.Open, FileAccess.Read, FileShare.None))
+            {
+                inputStream.Close();
+            }
+        }
+        catch (IOException)
+        {
+            return true;
+        }
+
+        return false;
     }
 }
