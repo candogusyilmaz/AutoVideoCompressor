@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32328.378
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoVideoCompressor", "AutoVideoCompressor\AutoVideoCompressor.csproj", "{D1FC4BB0-500A-4A5E-8EB9-B83EF88FDD4D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoVideoCompressor.Application", "AutoVideoCompressor.Application\AutoVideoCompressor.Application.csproj", "{13676A8B-300D-45D8-ACEC-0049F0655E4D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoVideoCompressor.Application", "AutoVideoCompressor.Application\AutoVideoCompressor.Application.csproj", "{13676A8B-300D-45D8-ACEC-0049F0655E4D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoVideoCompressor.Service", "AutoVideoCompressor.Service\AutoVideoCompressor.Service.csproj", "{70CF87BC-CC05-4FB6-8E60-92429D9100A8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,14 +13,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{D1FC4BB0-500A-4A5E-8EB9-B83EF88FDD4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D1FC4BB0-500A-4A5E-8EB9-B83EF88FDD4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D1FC4BB0-500A-4A5E-8EB9-B83EF88FDD4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D1FC4BB0-500A-4A5E-8EB9-B83EF88FDD4D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{13676A8B-300D-45D8-ACEC-0049F0655E4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{13676A8B-300D-45D8-ACEC-0049F0655E4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{13676A8B-300D-45D8-ACEC-0049F0655E4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{13676A8B-300D-45D8-ACEC-0049F0655E4D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70CF87BC-CC05-4FB6-8E60-92429D9100A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70CF87BC-CC05-4FB6-8E60-92429D9100A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70CF87BC-CC05-4FB6-8E60-92429D9100A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70CF87BC-CC05-4FB6-8E60-92429D9100A8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
