@@ -2,41 +2,45 @@
 
 This application watches a folder and compresses newly created files.
 
-I made this application for compressing my game captures with NVIDIA ShadowPlay. Around 2-3x smaller size.
+If you would like to run this application as a **Windows Service** download the latest release and follow the given instructions.
+
+I made this application for compressing my game captures which NVIDIA ShadowPlay recorded. Reduces the video size to about %40 of the original file size without losing any quality in the process.
 
 ## I just want to use this. How?
 
-Download the latest **release** and unzip to the folder you want to compress.
+Download the latest **[release](https://github.com/candogusyilmaz/AutoVideoCompressor/releases/latest)** and follow the instructions in the release details.
 
-## Installation Instructions
+## Development
 
-If you would like to create a single exe file run this command:
+### Publish
 
-`dotnet publish -r win-x64 -c Release /p:PublishSingleFile=true /p:PublishTrimmed=true --self-contained true`
+If you would like to create a single executable file run the following command in the powershell:
 
-You need `ffmpeg.exe` in order to compress the videos. You can the download links below:
+```powershell
+dotnet publish .\AutoVideoCompressor.Service\AutoVideoCompressor.Service.csproj -r win-x86 -c Release --self-contained true -p:PublishSingleFile=true -p:PublishReadyToRun=true
+```
 
-`https://www.gyan.dev/ffmpeg/builds/`
+You need **FFmpeg library** in order to compress the videos. **FFmpeg** is already included in the releases but if you would like to download from the source you can find the link below.
 
-## Modifications
+**[FFmpeg Releases](https://www.gyan.dev/ffmpeg/builds/)**
+
+### Modifications
 
 Modifications can be done by editing the **`appsettings.json`** file.
 
-`"Arguments": "<arguments for changing the default behaviour of the compressing style>"`
+```json
+"UseDefaultCodecs": true,
+"DeleteOriginalFile": true,
+"VideosDirectory": "<which folder to track>",
+"SaveDirectory": "<where to save the compressed files>",
+```
 
-`"UseDefaultCodecs": <default is true | false if you want to specify arguments>`
+Optional parameters:
 
-`"UseDateTimeFormatAsFilename": <true or false>`
-
-`"DateTimeFormat": "<example: yyyy_mm_dd_hh_mm_ss>"`
-
-`"DeleteOriginalFile": <true or false>`
-
-`"FfmpegLocation": "<path to the ffmpeg.exe file name included>"`
-
-`"VideosDirectory": "<which folder to track>"`
-
-`"SaveDirectory": "<where to save the compressed files>"`
+```JSON5
+"Arguments": "<ffmpeg arguments>", //set UseDefaultCodecs to false if arguments specified
+"FfmpegLocation": "<path to the ffmpeg.exe>" //default value is AssemblyDirectory\\ffmpeg.exe
+```
 
 ## License
 
