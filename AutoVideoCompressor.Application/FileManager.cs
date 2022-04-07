@@ -9,6 +9,8 @@ public sealed class FileManager
     private readonly CompressManager _compressor;
     private readonly ILogger _logger;
 
+    private readonly string[] _filter = { ".mp4", ".mov", ".wmv", ".avi" };
+
     public FileManager(IConfiguration config, ILogger logger)
     {
         _config = config.Get<CompressorConfiguration>();
@@ -41,6 +43,9 @@ public sealed class FileManager
         if (File.Exists(e.FullPath) == false)
             return;
 
+        if (EndsWithFilter(e.FullPath) == false)
+            return;
+
         _ = _compressor.Add(new VideoCompressInfo(e.Name!, e.FullPath, _config.SaveDirectory));
     }
 
@@ -51,5 +56,16 @@ public sealed class FileManager
             Directory.CreateDirectory(_config.SaveDirectory);
             _logger.LogInformation("Save directory does not exist. Folder created. [{SaveDirectory}]", _config.SaveDirectory);
         }
+    }
+
+    private bool EndsWithFilter(string fileName)
+    {
+        foreach (var item in _filter)
+        {
+            if (fileName.EndsWith(item))
+                return true;
+        }
+
+        return false;
     }
 }
